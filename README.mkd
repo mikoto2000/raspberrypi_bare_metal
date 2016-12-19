@@ -1,0 +1,82 @@
+raspberrypi_bare_metal
+======================
+
+Raspberry Pi 3 Model B+ でベアメタルプログラミングを行った記録。
+
+
+Requirements:
+-------------
+
+下記環境で動作確認を行っています。
+それ以外の環境の方は、シェルスクリプトの修正など行う必要があります。
+
+- OS: Windows 10 Pro 64bit
+- 実行環境: MSYS2
+
+
+Setup:
+------
+
+``fileget.sh`` で必要なファイルをダウンロード・展開します。
+
+```sh
+bash ./fileget.sh
+```
+
+``setup.sh`` でツールチェインへのパスを通します。
+
+```sh
+cd PATH_TO_raspberrypi_bare_metal
+. setup.sh
+```
+
+Build:
+------
+
+各ディレクトリで ``make`` を実行してください。
+``kernel8.img`` ファイルが作成されます。
+
+
+Run:
+----
+
+1. ``firmware_armstub/bootcode.bin``, ``firmware_armstub/start.elf``, ``kernel8.img`` を FAT32 でフォーマットした microSD カードのルートにコピーしてください。
+2. 「1.」の microSD カードを Raspberry Pi に挿入し、電源を入れてください。
+
+```
+SD カード
+├── bootcode.bin
+├── start.elf
+└── kernel8.img
+```
+
+References:
+===========
+
+これらサイトを見て試したはず...。ぬけもれあるかも。
+
+- [Raspberry Pi 3で64bitベアメタル(bare metal)プログラミング - へにゃぺんて＠日々勉強のまとめ](http://d.hatena.ne.jp/cupnes/20160529/1464513206)
+- [ARMのプログラムを作成してデバッグする 第２回](http://blog.techlab-xe.net/archives/3315)
+- [Raspberry Piのクロスコンパイル環境をWindowsパソコン上のEclipceで構築する](http://animod.jp/contents/2016/05/08/raspberry-pi-cross-compile-windows-eclipse/)
+[Linaro Releases](https://releases.linaro.org/components/toolchain/binaries/latest/aarch64-linux-gnu/)
+- [64-bit boot stub? · Issue #579 · raspberrypi/firmware](https://github.com/raspberrypi/firmware/issues/579#issuecomment-205525205)
+- [Lチカ Raspberry PiでC言語からSoCのレジスタを操作してGPIOを制御する - Qiita](http://qiita.com/moutend/items/534d597cf5c867273319)
+- [RPi Low-level peripherals - eLinux.org](http://elinux.org/RPi_Low-level_peripherals)
+- [BCM2835 - Raspberry Pi Documentation](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2835/README.md)
+
+
+License:
+--------
+
+Copyright (C) 2016 mikoto2000
+
+This software is released under the MIT License, see LICENSE
+
+このソフトウェアは MIT ライセンスの下で公開されています。 LICENSE を参照してください。
+
+
+Author:
+-------
+
+mikoto2000 <mikoto2000@gmail.com>
+

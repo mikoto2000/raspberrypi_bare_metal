@@ -1,0 +1,14 @@
+配線
+----
+
+下記のように配線してください。
+
+```
+PIN 36(GPIO16) ─ 抵抗 ─ LED
+PIN 6(GND) ────────┘
+```
+
+試用した抵抗と LED は下記の通り。
+
+- [1/4W金属皮膜抵抗 スモールサイズ 330Ω 橙橙黒黒茶 MFS1/4CC3300F KOA製｜マルツオンライン](http://www.marutsu.co.jp/pc/i/13392/)
+- [スモークLED(3mm・白・3.3V・20mA・1000mcd(min)) LSLED-W301 Linkman製｜マルツオンライン](http://www.marutsu.co.jp/pc/i/68263/)
