@@ -1,0 +1,26 @@
+配線
+----
+
+使用したケーブルは下記の通り。
+
+- [Amazon | Aukru Raspberry Pi 用 PL2303HX USB to TTL UART RS232 COM シリアルケーブル 変換アダプタ モジュール ブラック 1m | Aukru | シリアルケーブル通販](http://amzn.to/2hWxD4c)
+
+ドライバは下記ページを参考にした。
+
+- [Windows10でPL2303を無理やり動かす | なんでも独り言](http://ehbtj.com/info/pl2303-windows10/)
+
+
+下記のように配線してください。
+
+```
+PIN  6(GND) ----- ブラック(GND)
+PIN  8(GPIO14) -- ホワイト(RXD)
+PIN 10(GPIO15) -- グリーン(TXD)
+```
+
+
+追加作業
+--------
+
+SD カードのルートに、 ``config.txt`` をコピーしてください。
+
