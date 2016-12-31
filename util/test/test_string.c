@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "string.h"
 
-int main() {
+int test_ltoa_10() {
     // ltoa_10 正常系
     long l0     = 0;
     long l9     = 9;
@@ -109,3 +109,145 @@ int main() {
     err = ltoa_10(l10000, str, (sizeof(str) / sizeof(str[0])));
     assert(err == 1);
 }
+
+int test_ltoa_radix_16() {
+    // ltoa 正常系
+    long l0     = 0;
+    long l15     = 15;
+    long l16    = 16;
+    long l65535 = 65535;
+
+    long l_1  = -1;
+    long l_16 = -16;
+
+    unsigned char err;
+
+    char str[5];
+
+    err = ltoa(l0, str, (sizeof(str) / sizeof(str[0])), 16);
+    assert(str[0] == '0');
+    assert(str[1] == '\0');
+    assert(err == 0);
+    err = ltoa(l15, str, (sizeof(str) / sizeof(str[0])), 16);
+    assert(str[0] == 'F');
+    assert(str[1] == '\0');
+    assert(err == 0);
+    err = ltoa(l16, str, (sizeof(str) / sizeof(str[0])), 16);
+    assert(str[0] == '1');
+    assert(str[1] == '0');
+    assert(str[2] == '\0');
+    assert(err == 0);
+    err = ltoa(l65535, str, (sizeof(str) / sizeof(str[0])), 16);
+    assert(str[0] == 'F');
+    assert(str[1] == 'F');
+    assert(str[2] == 'F');
+    assert(str[3] == 'F');
+    assert(str[4] == '\0');
+    assert(err == 0);
+
+    err = ltoa(l_1, str, (sizeof(str) / sizeof(str[0])), 16);
+    assert(str[0] == '-');
+    assert(str[1] == '1');
+    assert(str[2] == '\0');
+    assert(err == 0);
+    err = ltoa(l_16, str, (sizeof(str) / sizeof(str[0])), 16);
+    assert(str[0] == '-');
+    assert(str[1] == '1');
+    assert(str[2] == '0');
+    assert(str[3] == '\0');
+    assert(err == 0);
+}
+
+int test_ltoa_radix_2() {
+    // ltoa 正常系
+    long l0     = 0;
+    long l15     = 15;
+    long l16    = 16;
+    long l65535 = 65535;
+
+    long l_1  = -1;
+    long l_16 = -16;
+
+    unsigned char err;
+
+    char str[17];
+
+    err = ltoa(l0, str, (sizeof(str) / sizeof(str[0])), 2);
+    assert(str[0] == '0');
+    assert(str[1] == '\0');
+    assert(err == 0);
+    err = ltoa(l15, str, (sizeof(str) / sizeof(str[0])), 2);
+    assert(str[0] == '1');
+    assert(str[1] == '1');
+    assert(str[2] == '1');
+    assert(str[3] == '1');
+    assert(str[4] == '\0');
+    assert(err == 0);
+    err = ltoa(l16, str, (sizeof(str) / sizeof(str[0])), 2);
+    assert(str[0] == '1');
+    assert(str[1] == '0');
+    assert(str[2] == '0');
+    assert(str[3] == '0');
+    assert(str[4] == '0');
+    assert(str[5] == '\0');
+    assert(err == 0);
+    err = ltoa(l65535, str, (sizeof(str) / sizeof(str[0])), 2);
+    assert(str[0] == '1');
+    assert(str[1] == '1');
+    assert(str[2] == '1');
+    assert(str[3] == '1');
+    assert(str[4] == '1');
+    assert(str[5] == '1');
+    assert(str[6] == '1');
+    assert(str[7] == '1');
+    assert(str[8] == '1');
+    assert(str[9] == '1');
+    assert(str[10] == '1');
+    assert(str[11] == '1');
+    assert(str[12] == '1');
+    assert(str[13] == '1');
+    assert(str[14] == '1');
+    assert(str[15] == '1');
+    assert(str[16] == '\0');
+    assert(err == 0);
+
+    err = ltoa(l_1, str, (sizeof(str) / sizeof(str[0])), 2);
+    assert(str[0] == '-');
+    assert(str[1] == '1');
+    assert(str[2] == '\0');
+    assert(err == 0);
+    err = ltoa(l_16, str, (sizeof(str) / sizeof(str[0])), 2);
+    assert(str[0] == '-');
+    assert(str[1] == '1');
+    assert(str[2] == '0');
+    assert(str[3] == '0');
+    assert(str[4] == '0');
+    assert(str[5] == '0');
+    assert(str[6] == '\0');
+    assert(err == 0);
+
+}
+
+int test_ltoa() {
+    // ltoa 異常系
+    long l0     = 0;
+    long l10000 = 10000;
+    unsigned char err;
+    char str[5];
+
+    err = ltoa(l0, str, (sizeof(str) / sizeof(str[0])), 0);
+    assert(err == 3);
+    err = ltoa(l0, str, (sizeof(str) / sizeof(str[0])), 17);
+    assert(err == 3);
+
+    err = ltoa(l10000, str, (sizeof(str) / sizeof(str[0])), 10);
+    assert(err == 1);
+}
+
+int main() {
+    test_ltoa_10();
+    test_ltoa();
+    test_ltoa_radix_2();
+    test_ltoa_radix_16();
+}
+
