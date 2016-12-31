@@ -19,7 +19,7 @@
  * 0 ビット目 : Data ready, 1 バイト以上受信しているか？
  *              1: 受信している, 0: 受信していない
  */
-#define MU_LSR          (*(volatile unsigned int *)0X3F215054)
+#define MU_LSR          (*(volatile unsigned int *)0x3F215054)
 
 /* Transmitter idle のビットマスク */
 #define MU_LSR_TX_IDLE  (1U << 6)
