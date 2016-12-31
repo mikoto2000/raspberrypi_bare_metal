@@ -2,7 +2,11 @@
 
 #ifdef __DEBUG_USE_STDIO_STRING_H__
 #include <stdio.h>
+#define debugf(args...) printf(args)
+#else // __DEBUG_USE_STDIO_STRING_H__
+#define debugf(args...)
 #endif // __DEBUG_USE_STDIO_STRING_H__
+
 
 /**
  * @fn 10 進数値を文字列へ変換する
@@ -19,13 +23,11 @@ unsigned char ltoa_10(const long l, char* str, const int max_length) {
     unsigned char tmp_digit_value;
     unsigned int  length = 0;
 
-#ifdef __DEBUG_USE_STDIO_STRING_H__
-    printf("start ltoa_10.\n");
-    printf("l             : %d\n", l);
-    printf("str           : %p\n", str);
-    printf("max_length    : %d\n", max_length);
-    printf("tmp_long_value: %d\n", tmp_long_value);
-#endif // __DEBUG_USE_STDIO_STRING_H__
+    debugf("start ltoa_10.\n");
+    debugf("l             : %d\n", l);
+    debugf("str           : %p\n", str);
+    debugf("max_length    : %d\n", max_length);
+    debugf("tmp_long_value: %d\n", tmp_long_value);
 
     // 桁の数値と文字を対応付けする配列
     const char cmap[]
@@ -52,16 +54,12 @@ unsigned char ltoa_10(const long l, char* str, const int max_length) {
         length++;
     }
 
-#ifdef __DEBUG_USE_STDIO_STRING_H__
-    printf("length: %d\n", length);
-#endif // __DEBUG_USE_STDIO_STRING_H__
+    debugf("length: %d\n", length);
 
     // バッファ長上限判定(NULL 文字を含めるので +1 する)
     // 上限を超えていたら 1 を返却
     if (length + 1 > max_length) {
-#ifdef __DEBUG_USE_STDIO_STRING_H__
-        printf("length + 1 > max_length.\n");
-#endif // __DEBUG_USE_STDIO_STRING_H__
+        debugf("length + 1 > max_length.\n");
         return 1;
     }
 
@@ -77,9 +75,7 @@ unsigned char ltoa_10(const long l, char* str, const int max_length) {
     tmp_long_value = l < 0 ? -l : l;
     while (tmp_long_value != 0) {
         tmp_digit_value = tmp_long_value % 10;
-#ifdef __DEBUG_USE_STDIO_STRING_H__
-         printf("digit: %d\n", tmp_digit_value);
-#endif // __DEBUG_USE_STDIO_STRING_H__
+         debugf("digit: %d\n", tmp_digit_value);
         str[i] = cmap[tmp_digit_value];
         i--;
         tmp_long_value = tmp_long_value / 10;
