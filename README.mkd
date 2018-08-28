@@ -4,6 +4,23 @@ raspberrypi_bare_metal
 Raspberry Pi 3 Model B+ でベアメタルプログラミングを行った記録。
 
 
+Usage:
+------
+
+docker でビルド・qemu による実行が行えます。
+
+- 使用イメージ : [mikoto2000/qemu-aarch64](https://hub.docker.com/r/mikoto2000/qemu-aarch64/)
+
+
+### 使用例:
+
+```
+docker-compose run --rm uart_output make all
+docker-compose run --rm uart_output make qemu
+```
+
+Windows の MSYS2 で開発したい方以下を確認してください。
+
 Requirements:
 -------------
 
@@ -76,7 +93,7 @@ References:
 License:
 --------
 
-Copyright (C) 2016 mikoto2000
+Copyright (C) 2018 mikoto2000
 
 This software is released under the MIT License, see LICENSE
 

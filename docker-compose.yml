@@ -1,0 +1,9 @@
+version: '3'
+services:
+    uart_output:
+        image: mikoto2000/qemu-aarch64:3.0.0
+        volumes:
+            - ./:/work
+        working_dir: /work/uart_output
+
+
