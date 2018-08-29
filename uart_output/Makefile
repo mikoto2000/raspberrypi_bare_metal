@@ -9,7 +9,7 @@ all: build link objcopy
 
 .PHONY: qemu
 qemu: kernel8.elf
-	qemu-system-aarch64 -kernel ./kernel8.elf -serial null -serial mon:stdio -nographic -machine raspi3
+	qemu-system-aarch64 -kernel ./kernel8.img -serial null -serial mon:stdio -nographic -machine raspi3
 
 objcopy: kernel8.img
 
