@@ -3,7 +3,9 @@ LD=aarch64-linux-gnu-ld
 AS=aarch64-linux-gnu-as
 OBJCOPY=aarch64-linux-gnu-objcopy
 
-OBJECTS=boot.o system_register.o main.o core_c.o core_s.o uart.o string.o
+CFLAGS=-I ../util/include
+
+OBJECTS=boot_s.o system_register_s.o main_c.o core_c.o core_s.o uart_c.o string_c.o
 
 all: build link objcopy
 
@@ -25,26 +27,21 @@ kernel8.elf: $(OBJECTS)
 
 build: $(OBJECTS)
 
-boot.o: boot.S
+# カレントディレクトリのアセンブリコードコンパイル用のルール
+%_s.o: ./%.S
 	$(AS) -o $@ $^
 
-system_register.o: ../util/src/system_register.S
+# カレントディレクトリの C コードコンパイル用のルール
+%_c.o: ./%.c
+	$(CC) $(CFLAGS) -c -o $@ $^
+
+# util のアセンブリコードコンパイル用のルール
+%_s.o: ../util/src/%.S
 	$(AS) -o $@ $^
 
-main.o: main.c
-	$(CC) -I ../util/include -c -o $@ $^
-
-core_c.o: ../util/src/core.c
-	$(CC) -I ../util/include -c -o $@ $^
-
-core_s.o: ../util/src/core.s
-	$(CC) -I ../util/include -c -o $@ $^
-
-uart.o: ../util/src/uart.c
-	$(CC) -I ../util/include -c -o $@ $^
-
-string.o: ../util/src/string.c
-	$(CC) -I ../util/include -c -o $@ $^
+# util の C コードコンパイル用のルール
+%_c.o: ../util/src/%.c
+	$(CC) $(CFLAGS) -c -o $@ $^
 
 clean:
 	rm *.o *.elf *.img
