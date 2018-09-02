@@ -90,6 +90,8 @@ References:
     - [Raspberry Pi3 / arm64 - Debian/Ubuntu ミートアップ in 札幌 - debianmeetingresume201606-rpi3-presentation.pdf](http://tokyodebian.alioth.debian.org/pdf/debianmeetingresume201606-rpi3-presentation.pdf)
 - ARM ドキュメント
     - [Arm Cortex-A53 MPCore Processor Technical Reference Manual](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0500j/index.html)
+    - [ARM Information Center](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.subset.architecture.reference/index.html)
+    - [Arm Compiler armasm User Guide](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.subset.architecture.reference/index.html)
 
 
 License:
