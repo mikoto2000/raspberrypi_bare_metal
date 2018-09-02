@@ -28,17 +28,17 @@ build: $(OBJECTS)
 boot.o: boot.S
 	$(AS) -o boot.o boot.S
 
-system_register.o: system_register.S
-	$(AS) -o system_register.o system_register.S
+system_register.o: ../util/src/system_register.S
+	$(AS) -o system_register.o ../util/src/system_register.S
 
 main.o: main.c
 	$(CC) -I ../util/include -c -o main.o main.c
 
-core_c.o: core.c
-	$(CC) -I ../util/include -c -o core_c.o core.c
+core_c.o: ../util/src/core.c
+	$(CC) -I ../util/include -c -o core_c.o ../util/src/core.c
 
-core_s.o: core.c
-	$(CC) -I ../util/include -c -o core_s.o core.S
+core_s.o: ../util/src/core.s
+	$(CC) -I ../util/include -c -o core_s.o ../util/src/core.S
 
 uart.o: ../util/src/uart.c
 	$(CC) -I ../util/include -c -o uart.o ../util/src/uart.c
