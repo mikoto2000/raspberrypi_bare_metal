@@ -3,7 +3,7 @@ LD=aarch64-linux-gnu-ld
 AS=aarch64-linux-gnu-as
 OBJCOPY=aarch64-linux-gnu-objcopy
 
-OBJECTS=boot.o system_register.o main.o core.o uart.o string.o
+OBJECTS=boot.o system_register.o main.o core_c.o core_s.o uart.o string.o
 
 all: build link objcopy
 
@@ -34,8 +34,11 @@ system_register.o: system_register.S
 main.o: main.c
 	$(CC) -I ../util/include -c -o main.o main.c
 
-core.o: core.c
-	$(CC) -I ../util/include -c -o core.o core.c
+core_c.o: core.c
+	$(CC) -I ../util/include -c -o core_c.o core.c
+
+core_s.o: core.c
+	$(CC) -I ../util/include -c -o core_s.o core.S
 
 uart.o: ../util/src/uart.c
 	$(CC) -I ../util/include -c -o uart.o ../util/src/uart.c

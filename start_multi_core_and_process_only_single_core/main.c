@@ -21,9 +21,16 @@ int main(void) {
         print(pre);
         print(cbuf);
         println(post);
+    } else {
+        while (1) {
+            // WFI と WFE の違いがよくわからないけれどとりあえず WFI で...
+            // 今のところ割り込みを有効にしていないから、
+            // 割込み待機を抜けることはないはずだが、
+            // 何となく不安なので while(1) で囲む。
+            wait_for_interrupt();
+        }
     }
 
-    while (1);
 
     return 0;
 }
