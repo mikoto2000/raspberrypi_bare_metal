@@ -1,0 +1,10 @@
+print_information
+=================
+
+`start_multi_core_and_process_only_single_core` をベースに、
+各種システムレジスタを読み込む方法を確認する。
+
+今回は実機で試していないので、試したい場合は
+`start_multi_core_and_process_only_single_core`
+の `README` を見ながら環境を整えること。
+
