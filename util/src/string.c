@@ -18,9 +18,9 @@
  * @deprecated 互換性のために残してあります。ltoa() 関数を使用してください。
  * @see ltoa()
  */
-unsigned char ltoa_10(const long l, char* str, const int max_length) {
+unsigned char ltoa_10(const uint64 l, char* str, const int max_length) {
     debugf("start ltoa_10.\n");
-    return ltoa(l, str, max_length, 10);
+    return ltoa(l, str, max_length, 10l);
 }
 
 /**
@@ -34,11 +34,11 @@ unsigned char ltoa_10(const long l, char* str, const int max_length) {
  *         1 : 変換後文字列を格納するバッファの長さが足りなかった
  *         2 : サポートしていない基数が指定された
  */
-unsigned char ltoa(const long l, char* str, const int max_length, const int radix) {
-    unsigned int  i;
-    unsigned long tmp_long_value = l < 0 ? -l : l;
-    unsigned char tmp_digit_value;
-    unsigned int  length = 0;
+unsigned char ltoa(const uint64 l, char* str, const int max_length, const uint64 radix) {
+    uint64  i;
+    uint64 tmp_long_value = l < 0 ? -l : l;
+    uint8 tmp_digit_value;
+    uint64  length = 0;
 
     debugf("start ltoa.\n");
     debugf("l             : %d\n", l);
